@@ -12,17 +12,18 @@ export class TodoFormComponent implements OnInit {
   @Input() todoItem: Todo;
   @Output() formSubmit = new EventEmitter<Partial<Todo>>();
 
-  form: FormGroup;
+  formModel: {[key in keyof Todo]?: FormControl} = {
+    name: new FormControl(null, Validators.required),
+    assignedTo: new FormControl(null),
+    description: new FormControl(null, Validators.minLength(10)),
+    due: new FormControl(null),
+  };
+  form: FormGroup = new FormGroup(this.formModel);
 
   constructor() { }
 
   ngOnInit() {
-    this.form = new FormGroup({
-      name: new FormControl(this.todoItem.name, Validators.required),
-      assignedTo: new FormControl(this.todoItem.assignedTo),
-      description: new FormControl(this.todoItem.description, Validators.minLength(10)),
-      due: new FormControl(this.todoItem.due),
-    });
+    this.form.patchValue(this.todoItem);
   }
 
 }

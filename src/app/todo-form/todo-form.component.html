@@ -1,31 +1,31 @@
 <form (ngSubmit)="formSubmit.emit(form.value)">
   <mat-form-field class="example-full-width">
-    <input type="text" matInput placeholder="Name" [formControl]="form.get('name')">
-    <mat-error *ngIf="form.get('name').hasError('email') && !form.get('name').hasError('required')">
+    <input type="text" matInput placeholder="Name" [formControl]="formModel.name">
+    <mat-error *ngIf="formModel.name.hasError('email') && !formModel.name.hasError('required')">
       Please enter a name
     </mat-error>
-    <mat-error *ngIf="form.get('name').hasError('required')">
+    <mat-error *ngIf="formModel.name.hasError('required')">
       Name is <strong>required</strong>
     </mat-error>
   </mat-form-field>
   <mat-form-field class="example-full-width">
-    <textarea matInput placeholder="description" [formControl]="form.get('description')"></textarea>
+    <textarea matInput placeholder="description" [formControl]="formModel.description"></textarea>
     <mat-hint>Description is optional but should have at 10 Characters</mat-hint>
-    <mat-error *ngIf="form.get('description').hasError('minlength')">
-      Your description is to short. It should be at least {{form.get('description').errors?.minlength.requiredLength}},
-      but you have only {{form.get('description').errors?.minlength.actualLength}} tough.
+    <mat-error *ngIf="formModel.description.hasError('minlength')">
+      Your description is to short. It should be at least {{formModel.description.errors?.minlength.requiredLength}},
+      but you have only {{formModel.description.errors?.minlength.actualLength}} tough.
     </mat-error>
   </mat-form-field>
   <mat-form-field class="example-full-width">
-    <input type="date" matInput placeholder="due date" [formControl]="form.get('due')">
+    <input type="date" matInput placeholder="due date" [formControl]="formModel.due">
   </mat-form-field>
   <mat-form-field class="example-full-width">
-    <input type="email" matInput placeholder="Email" [formControl]="form.get('assignedTo')">
+    <input type="email" matInput placeholder="Email" [formControl]="formModel.assignedTo">
     <mat-hint>Assignment is mandatory</mat-hint>
-    <mat-error *ngIf="form.get('assignedTo').hasError('email') && !form.get('assignedTo').hasError('required')">
+    <mat-error *ngIf="formModel.assignedTo.hasError('email') && !formModel.assignedTo.hasError('required')">
       Please enter a valid email address
     </mat-error>
-    <mat-error *ngIf="form.get('assignedTo').hasError('required')">
+    <mat-error *ngIf="formModel.assignedTo.hasError('required')">
       Email is <strong>required</strong>
     </mat-error>
   </mat-form-field>
