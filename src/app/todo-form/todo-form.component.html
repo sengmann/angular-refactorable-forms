@@ -1,9 +1,6 @@
 <form (ngSubmit)="formSubmit.emit(form.value)">
   <mat-form-field class="example-full-width">
     <input type="text" matInput placeholder="Name" [formControl]="formModel.name">
-    <mat-error *ngIf="formModel.name.hasError('email') && !formModel.name.hasError('required')">
-      Please enter a name
-    </mat-error>
     <mat-error *ngIf="formModel.name.hasError('required')">
       Name is <strong>required</strong>
     </mat-error>
